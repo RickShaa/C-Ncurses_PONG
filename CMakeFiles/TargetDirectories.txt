@@ -1,3 +1,0 @@
-/Users/rickshaffer/cRepo/shafferri81088_at_5888/ncurses/CMakeFiles/rebuild_cache.dir
-/Users/rickshaffer/cRepo/shafferri81088_at_5888/ncurses/CMakeFiles/edit_cache.dir
-/Users/rickshaffer/cRepo/shafferri81088_at_5888/ncurses/CMakeFiles/main.dir
