@@ -1,0 +1,165 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import acm.program.GraphicsProgram;\
+import java.awt.Color;\
+import java.io.BufferedReader;\
+import java.io.File;\
+import java.io.FileReader;\
+import java.io.IOException;\
+import java.util.ArrayList;\
+\
+import acm.graphics.*;\
+\
+\
+public class DotPlot extends GraphicsProgram \{\
+\
+	private ArrayList<String> fileZero = new ArrayList<String>();\
+	private ArrayList<String> fileOne = new ArrayList<String>();\
+	private ArrayList<String> fileTwo = new ArrayList<String>();\
+	private ArrayList<String> fileThree = new ArrayList<String>();\
+	private ArrayList<String> fileFour = new ArrayList<String>();\
+	private ArrayList<String> fileFive = new ArrayList<String>();\
+	private ArrayList<String> fileSix = new ArrayList<String>();\
+	private ArrayList<String> fileSeven = new ArrayList<String>();\
+	private ArrayList<String> fileEight = new ArrayList<String>();\
+	private ArrayList<ArrayList<String>> allFiles = new ArrayList<ArrayList<String>>();\
+\
+	FileReader fr;\
+	BufferedReader br;\
+\
+	File dir = new File("files");\
+	File[] files = dir.listFiles();\
+\
+	double BLOCK_SIZE = 0.20;\
+	\
+\
+	public void run() \{\
+\
+		readFiles();\
+		arrayListToList();\
+		\
+\
+		for (int i = 0; i<allFiles.size(); i++)\
+		\{\
+			drawOneRow(i);\
+		\}\
+		\
+		\
+\
+		\
+\
+		// IODialog dialog = new IODialog();\
+		// String s1 = dialog.readLine("Enter first string:");\
+		// String s2 = dialog.readLine("Enter second string:");\
+\
+	\}\
+	\
+	private void drawOneRow(int n) \{\
+		\
+		int x = -200;\
+		int y = 10+ 200 * n;\
+		\
+		for (int i = 0; i < allFiles.size(); i++) \{\
+			x+=200;\
+			showSimilarity(allFiles.get(i).toString(), allFiles.get(i).toString(), x, y);\
+			\
+			\
+		\}\
+	\}\
+\
+	private void showSimilarity(String s1, String s2, int x, int y) \{\
+\
+		String one = prepareCode(s1);\
+		String two = prepareCode(s2);\
+			for (int i = 0; i < one.length(); i++) \{\
+				for (int j = 0; j < two.length(); j++) \{\
+					if (one.charAt(i) == two.charAt(j)) \{\
+						GRect pixel = new GRect(BLOCK_SIZE, BLOCK_SIZE);\
+						pixel.setFilled(true);\
+						pixel.setColor(Color.BLACK);\
+						pixel.setFillColor(Color.BLACK);\
+						add(pixel, i * BLOCK_SIZE + x , j * BLOCK_SIZE + y);\
+						\
+\
+					\}\
+				\}\
+			\}\
+\
+		\}\
+	\
+\
+\
+\
+	// Die Datei an der Stelle i wird ge\'f6ffnet und der Inhalt gelesen und ausgegeben\
+\
+	private void readFiles() \{ // Buffered Reader: Quelle: Variationen zum Thema Java von Ralph Lano\
+\
+		try \{\
+			for (int i = 0; i < files.length; i++) \{\
+				br = new BufferedReader(new FileReader(files[i]));\
+\
+				while (true) \{\
+					String line = br.readLine();\
+					// Erstellen von einzelnen ArrayLists mit dem Inhalt der Files nach "i"\
+					if (i == 0) \{\
+						fileZero.add(line);\
+					\} else if (i == 1) \{\
+						fileOne.add(line);\
+					\} else if (i == 2) \{\
+						fileTwo.add(line);\
+					\} else if (i == 3) \{\
+						fileThree.add(line);\
+					\} else if (i == 4) \{\
+						fileFour.add(line);\
+					\} else if (i == 5) \{\
+						fileFive.add(line);\
+					\} else if (i == 6) \{\
+						fileSix.add(line);\
+					\} else if (i == 7) \{\
+						fileSeven.add(line);\
+					\} else if (i == 8) \{\
+						fileEight.add(line);\
+					\}\
+\
+					if (line == null)\
+						break;\
+				\}\
+			\}\
+\
+			br.close();\
+		\} catch (IOException e) \{\
+			println("file not found");\
+		\}\
+\
+	\}\
+\
+	private void arrayListToList() \{\
+\
+		allFiles.add(fileZero);\
+		allFiles.add(fileOne);\
+		allFiles.add(fileTwo);\
+		allFiles.add(fileThree);\
+		allFiles.add(fileFour);\
+		allFiles.add(fileFive);\
+		allFiles.add(fileSix);\
+		allFiles.add(fileSeven);\
+		allFiles.add(fileEight);\
+\
+	\}\
+\
+	private String prepareCode(String s) \{\
+		s = s.replaceAll(" ", "");\
+		s = s.replaceAll("\\n", "");\
+		s = s.replaceAll("\\t", "");\
+		return s;\
+\
+	\}\
+	\
+	\
+\
+\}}
